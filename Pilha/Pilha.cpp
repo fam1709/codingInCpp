@@ -1,50 +1,50 @@
 #include<iostream>
 
 
-#define MAX_PILHA 10
+#define MAX_STACK 10
 
 using namespace std;
 
-class PilhaInt {
+class StackInt {
 public:
 
-    PilhaInt() {
-        for (int i = 0; i < MAX_PILHA; i++) {
+    StackInt() {
+        for (int i = 0; i < MAX_STACK; i++) {
             tab[i] = 0;
         }
-        atual = 0;
+        current = 0;
     }
 
-    const PilhaInt& operator = (const PilhaInt& p) {
-        atual = p.atual;
-        for (int i = 0; i < atual; i++) {
+    const StackInt& operator = (const StackInt& p) {
+        current = p.current;
+        for (int i = 0; i < current; i++) {
             tab[i] = p.tab[i];
         }
         return *this;
     }
 
 
-    PilhaInt& operator << (int valor) {
-        empilha(valor);
+    StackInt& operator << (int value) {
+        push(value);
         return *this;
     }
 
-    void empilha(int valor) {
-        tab[atual++] = valor;
+    void push (int value) {
+        tab[current++] = value;
 
     }
-    int desempilha() {
-        return tab[--atual];
+    int pop() {
+        return tab[--current];
 
     }
 
     void print(ostream& o) {
         int i = 0;
         o << "[ ";
-        while (atual != i) {
+        while (current != i) {
             o << tab[i];
             i++;
-            if (atual > i) {
+            if (current > i) {
                 o << ", ";
 
             }
@@ -53,6 +53,6 @@ public:
     }
 
 private:
-    int tab[MAX_PILHA];
-    int atual;
+    int tab[MAX_STACK];
+    int current;
 };
