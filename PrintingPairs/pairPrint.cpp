@@ -1,6 +1,6 @@
-#include <initializer_list>
+#include<initializer_list>
 #include <iostream>
-#include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -43,11 +43,14 @@ class Pair {
 public:
     template <typename A, typename B>
     Pair(A a, B b) {
-        pont = new PairImpl<A, B>(a, b);
+        pont = make_shared<PairImpl<A, B>>(a, b);
     }
 
 
-    AbstractPair* pont;
+    friend void print(ostream& o, const initializer_list<Pair>& lista);
+
+private:
+    shared_ptr<AbstractPair> pont;
 };
 
 void print(ostream& o, const initializer_list<Pair>& lista) {
